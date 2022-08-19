@@ -1,4 +1,4 @@
-package com.fortunate.week7tasknfotech.service;
+package com.fortunate.week7tasknfotech.model;
 
 
 import com.fortunate.week7tasknfotech.model.User;
