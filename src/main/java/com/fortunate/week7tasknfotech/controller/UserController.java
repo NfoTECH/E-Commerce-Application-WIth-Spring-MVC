@@ -4,6 +4,9 @@ package com.fortunate.week7tasknfotech.controller;
 import com.fortunate.week7tasknfotech.model.User;
 import com.fortunate.week7tasknfotech.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -39,6 +42,15 @@ public class UserController {
         return "signUpSuccess";
     }
 
+    @GetMapping("/login")
+    public String viewLoginPage() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication == null || authentication instanceof AnonymousAuthenticationToken) {
+            return "login";
+        }
+        return "redirect:/";
+    }
+
     @GetMapping("/users")
     public String listUsers(Model model) {
         List<User> listUsers = repository.findAll();
@@ -46,4 +58,6 @@ public class UserController {
 
         return "users";
     }
+
+
 }
