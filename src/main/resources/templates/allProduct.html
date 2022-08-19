@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Admin Page</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+</head>
+
+<body>
+
+<div class="container my-2">
+    <h2>Product List</h2>
+
+    <table border="1" class="table table-striped table-bordered">
+        <thead class = "table-dark">
+        <tr>
+            <th>Product Id</th>
+            <th>Product Name</th>
+            <th>Product Category</th>
+            <th>Product Price</th>
+            <th>Product Quantity</th>
+
+            <th> Actions </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="product : ${listProducts}">
+            <td th:text="${product.id}">Product Id</td>
+            <td th:text="${product.name}">Product Name</td>
+            <td th:text="${product.brand}">Product Brand</td>
+            <td th:text="${product.madein}">Product Origin</td>
+            <td th:text="${product.price}">Product Price</td>
+            <td>
+                <!--            <td th:text="${product.action}">Product Price</td>-->
+                <a th:href="@{/edit/{id}(id=${product.id})}" class="btn btn-primary">Edit</a>
+                <a th:href="@{/delete/{id}(id=${product.id})}" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <br>
+    <a th:href="new" class="btn btn-primary btn-sm mb-3">Create New Product </a>
+</div>
+</body>
+
+</html>
