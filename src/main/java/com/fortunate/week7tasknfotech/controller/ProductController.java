@@ -16,11 +16,11 @@ public class ProductController {
     @Autowired
     private ProductService service;
 
-    @GetMapping("/")
-    public String viewHomaPage(Model model) {
+    @GetMapping("/allProduct")
+    public String productPage(Model model) {
         List<Product> listProducts = service.listAllProduct();
         model.addAttribute("listProducts", listProducts);
-        return "index";
+        return "allProduct";
     }
 
     @GetMapping("/new")
@@ -34,7 +34,7 @@ public class ProductController {
     @PostMapping("/save")
     public String saveProduct(@ModelAttribute("product") Product product) {
         service.saveProduct(product);
-        return "redirect:/";
+        return "redirect:/allProduct";
     }
 
     @GetMapping("/edit/{id}")
@@ -48,6 +48,6 @@ public class ProductController {
     @GetMapping("/delete/{id}")
     public String deleteProduct(@PathVariable(name = "id") Long id) {
         service.deleteProductById(id);
-        return "redirect:/";
+        return "redirect:/allProduct";
     }
 }
