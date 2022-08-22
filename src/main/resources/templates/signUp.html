@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}">
 <head>
   <meta charset="ISO-8859-1">
   <title>Sign Up - CodeJava</title>
@@ -8,9 +10,12 @@
   <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
+<div layout:fragment="content">
 <div class="container text-center">
   <div>
-    <h1>User Registration</h1>
+    <div>
+      <img class="img-fluid" th:src="@{/images/nfotech_electronics.png}" />
+    </div>
   </div>
   <form th:action="@{/process_register}" th:object="${user}"
         method="post" style="max-width: 600px; margin: 0 auto;">
@@ -47,11 +52,13 @@
         </div>
       </div>
       <br>
+      <a th:href="@{/login}">Already have an account? Login here</a><br>
       <div>
         <button type="submit" class="btn btn-primary">Sign Up</button>
       </div>
     </div>
   </form>
+</div>
 </div>
 </body>
 </html>

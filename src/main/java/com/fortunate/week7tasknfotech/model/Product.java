@@ -1,13 +1,13 @@
 package com.fortunate.week7tasknfotech.model;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -18,7 +18,7 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name", nullable = false, length = 50)
+    @Column(name = "name", nullable = false, length = 200)
     private String name;
 
     @Column(name = "category", nullable = false, length = 20)
@@ -30,6 +30,6 @@ public class Product {
     @Column(name = "quantity", nullable = false)
     private int quantity;
 
-    @Column(name = "image", length = 50)
+    @Column(name = "image", length = 200)
     private String image;
 }

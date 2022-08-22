@@ -1,8 +1,10 @@
 package com.fortunate.week7tasknfotech.controller;
 
 
+import com.fortunate.week7tasknfotech.model.Product;
 import com.fortunate.week7tasknfotech.model.User;
 import com.fortunate.week7tasknfotech.repository.UserRepository;
+import com.fortunate.week7tasknfotech.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -21,8 +23,13 @@ public class UserController {
     @Autowired
     private UserRepository repository;
 
+    @Autowired
+    private ProductService service;
+
     @GetMapping("")
-    public String viewHomePage() {
+    public String viewHomePage(Model model) {
+        List<Product> displayProducts = service.listAllProduct();
+        model.addAttribute("displayProducts", displayProducts);
         return "index";
     }
 
@@ -57,6 +64,11 @@ public class UserController {
         model.addAttribute("listUsers", listUsers);
 
         return "users";
+    }
+
+    @GetMapping("/contact")
+    public String contactPage() {
+        return "contact";
     }
 
 

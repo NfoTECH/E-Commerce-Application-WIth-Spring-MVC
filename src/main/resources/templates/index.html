@@ -1,6 +1,7 @@
-
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}">
 <head>
     <meta charset="ISO-8859-1">
     <title>NfoTECH Electronics</title>
@@ -9,13 +10,55 @@
     <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
-<div class="container text-center">
-    <h1>Welcome to NfoTECH Stores</h1>
-    <h3><a th:href="@{/users}">List of Users</a></h3>
-    <h3><a th:href="@{/register}">Register</a></h3>
-    <h3><a th:href="@{/allProduct}">List of Products</a></h3>
-    <h3><a th:href="@{/login}">Login</a></h3>
+
+<div layout:fragment="content">
+    <section class="my-5">
+        <div class="container">
+<!--            <div class="row">-->
+<!--                <div class="col-md-12">-->
+<!--                    <h1>Welcome to NfoTECH Stores</h1>-->
+<!--                    <h3><a th:href="@{/users}">List of Users</a></h3>-->
+<!--                    <h3><a th:href="@{/register}">Register</a></h3>-->
+<!--                    <h3><a th:href="@{/allProduct}">List of Products</a></h3>-->
+<!--                    <h3><a th:href="@{/login}">Login</a></h3>-->
+<!--                    <p>Lorem ipsum dolor sit amet, consectetur [....]</p>-->
+<!--                </div>-->
+<!--            </div>-->
+            <div class="row" >
+<!--                <div class="col-3 m-1" th:each="product : ${displayProducts}">-->
+<!--                    <div class="card" style="width: 18rem;">-->
+<!--                        <img src="../static/images/" th:src="@{${product.getImage()}}" class="card-img-top h-50" alt="..." />-->
+<!--                        <div class="card-body">-->
+<!--                            <h5 class="card-title" th:text="${product.name}"></h5>-->
+<!--                            <h2 class="card-title" th:text="${product.price}"></h2>-->
+<!--                            <a href="#" class="btn btn-primary">Add to cart</a>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+                <div class="col-3 m-1" th:each="product : ${displayProducts}">
+                    <div class="card" style="width: 18rem;">
+                        <img src="../static/images/" th:src="@{${'images/'+product.image}}" class="card-img-top h-50" alt="..." />
+                        <div class="card-body">
+                            <h5 class="card-title" th:text="${product.name}"></h5>
+                            <h2 class="card-title" th:text="${product.price}"></h2>
+                            <a href="#" class="btn btn-primary">Add to cart</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </section>
 </div>
+<!--<div th:replace="fragments/navbar :: navbar"></div>-->
+<!--<div class="container text-center" layout:fragment="content">-->
+<!--    <h1>Welcome to NfoTECH Stores</h1>-->
+<!--    <h3><a th:href="@{/users}">List of Users</a></h3>-->
+<!--    <h3><a th:href="@{/register}">Register</a></h3>-->
+<!--    <h3><a th:href="@{/allProduct}">List of Products</a></h3>-->
+<!--    <h3><a th:href="@{/login}">Login</a></h3>-->
+<!--</div>-->
 
 </body>
 </html>

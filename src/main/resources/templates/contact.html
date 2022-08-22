@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}">
+<head>
+    <title>Welcome to NfoTECH Stores</title>
+</head>
+<body>
+
+<div layout:fragment="content">
+    <section class="my-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>Welcome to NfoTECH Stores</h1>
+                    <p>We deal in all kinds of Electronics and home appliances[....]</p>
+                    <p>Call us on 07034999322 or email us at fortunenwachukwu@gmail.com</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+</body>
+</html>
+contact.html
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>Contact Us</title>
+</head>
+<body>
+
+<div layout:fragment="content">
+    <section class="my-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>Contact Us</h1>
+                    <p>Please email us at fortunenwachukwu@gmail.com.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<th:block th:fragment="optional">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+</th:block>
+
+</body>
+</html>

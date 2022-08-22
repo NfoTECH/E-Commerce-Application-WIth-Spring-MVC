@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
@@ -9,6 +11,7 @@
         crossorigin="anonymous" />
 </head>
 <body>
+<div layout:fragment="content">
 <div class="container-fluid text-center">
   <div>
     <img class="img-fluid" th:src="@{/images/nfotech_electronics.png}" />
@@ -24,7 +27,7 @@
     </div>
 
     <div class="border border-secondary p-3 rounded">
-      <p>Access to Shopme Control Panel</p>
+      <p>Login to access your cart</p>
       <p>
         <label>
           <input type="email" name="email" class="form-control" placeholder="E-mail" required autofocus/>
@@ -40,11 +43,13 @@
           <input type="checkbox" name="remember-me" />
         </label>&nbsp;Remember Me
       </p>
+      <a th:href="@{/register}">Create an account</a>
       <p>
         <input type="submit" value="Login" class="btn btn-primary" />
       </p>
     </div>
   </form>
+</div>
 </div>
 </body>
 </html>
