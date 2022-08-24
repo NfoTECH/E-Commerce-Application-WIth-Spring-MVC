@@ -1,5 +1,6 @@
 package com.fortunate.week7tasknfotech.model;
 
+import com.fortunate.week7tasknfotech.enums.Role;
 import lombok.*;
 
 import javax.persistence.*;
@@ -28,5 +29,9 @@ public class User {
 
     @Column(name = "last_name", nullable = false, length = 20)
     private String lastName;
+
+//    @Enumerated(EnumType.STRING)
+    @Column(name = "role")
+    private Role role;
 }
 

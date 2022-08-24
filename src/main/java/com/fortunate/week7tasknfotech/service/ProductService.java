@@ -2,9 +2,14 @@ package com.fortunate.week7tasknfotech.service;
 
 import com.fortunate.week7tasknfotech.model.Product;
 import com.fortunate.week7tasknfotech.repository.ProductRepository;
+import com.fortunate.week7tasknfotech.util.FileUploadUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,6 +24,14 @@ public class ProductService {
 
     public void saveProduct(Product product) {
         this.repository.save(product);
+    }
+
+    public void saveProductWithImage(MultipartFile multipartFile, Product product) throws IOException {
+        String imageFileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+        String uploadDir = "src/main/resources/static/images";
+        FileUploadUtil.saveFile(uploadDir, imageFileName, multipartFile);
+        product.setImage(imageFileName);
+        repository.save(product);
     }
 
     public Product get(Long id) {

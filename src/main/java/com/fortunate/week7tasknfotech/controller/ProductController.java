@@ -6,8 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.io.IOException;
 import java.util.List;
 
 @Controller
@@ -31,9 +34,17 @@ public class ProductController {
     }
 
     //@RequestMapping(value = "/save", method = RequestMethod.POST)
+//    @PostMapping("/save")
+//    public String saveProduct(@ModelAttribute("product") Product product) {
+//        service.saveProduct(product);
+//        return "redirect:/allProduct";
+//    }
+
     @PostMapping("/save")
-    public String saveProduct(@ModelAttribute("product") Product product) {
-        service.saveProduct(product);
+    public String saveProduct(@ModelAttribute("product")Product newProduct,
+                              @RequestParam("productImage") MultipartFile multipartFile,
+                              RedirectAttributes attributes) throws IOException {
+        service.saveProductWithImage(multipartFile, newProduct);
         return "redirect:/allProduct";
     }
 

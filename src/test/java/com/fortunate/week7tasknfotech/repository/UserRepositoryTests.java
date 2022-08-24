@@ -1,5 +1,6 @@
 package com.fortunate.week7tasknfotech.repository;
 
+import com.fortunate.week7tasknfotech.enums.Role;
 import com.fortunate.week7tasknfotech.model.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,7 @@ public class UserRepositoryTests {
         user.setPassword("perp");
         user.setFirstName("Fortunate");
         user.setLastName("Nwachukwu");
+        user.setRole(Role.valueOf("Customer"));
 
         User savedUser = repo.save(user);
         User existUser = entityManager.find(User.class, savedUser.getId());

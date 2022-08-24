@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="ISO-8859-1">
+  <title>NfoTECH Electronics</title>
+  <!--imported config-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+  <!--    style -->
+  <style type="text/css">
+    .table tbody td{
+      vertical-align: middle;
+    }
+    .btn-incre, .btn-decre{
+      box-shadow: none;
+      font-size: 25px;
+    }
+  </style>
+</head>
+<body>
+<div class="container my-3">
+  <div class="d-flex py-3"><h3>Total Price: $ 500 </h3> <a class="mx-3 btn btn-primary" href="cart-check-out">Check Out</a></div>
+  <table class="table table-light">
+    <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Customer Id</th>
+      <th scope="col">Price</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Cancel</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <!--        loop start -->
+    <div class="col-3 m-1" th:each="cartContent : ${cartList}">
+
+      <!--                     start of table row-->
+      <tr>
+        <td th:text="${cartContent.product}"></td>
+        <td th:text="${cartContent.customerId}"></td>
+        <td th:text="'$' + 5000"></td>
+
+        <td>
+          <!--                               create a form to submit quantity for buy method-->
+
+          <form th:action="@{/#}"  method="POST" class="form-inline">
+
+            <input type="hidden" th:id="cartId"   th:value="${cartContent.cartId}"  class="form-input">
+            <div class="form-group d-flex justify-content-between">
+
+              <!--                          start of increase button, changing value, decrease button-->
+              <a class="btn bnt-sm btn-incre" th:href="@{'/incrementQuantity/' + ${cartContent.cartId}}"><i class="fas fa-plus-square"></i></a>
+              <input type="text" name="quantity" class="form-control" th:min="1" th:max="${cartContent.quantity}"  th:value="${cartContent.quantity}">
+              <a class="btn btn-sm btn-decre" th:href="@{'/decrementQuantity/' + ${cartContent.cartId}}"><i class="fas fa-minus-square"></i></a>
+            </div>
+
+            <!--                        end of increase button, changing value, decrease button-->
+
+            <!--                                                buy button-->
+            <button type="submit" class="btn btn-primary btn-sm">Buy</button>
+
+          </form>
+          <!--                                        end of form-->
+        </td>
+
+        <td><a th:href="@{'/editCart/' + ${cartContent.cartId}}" class="btn btn-sm btn-danger">Remove</a></td>
+
+      </tr>
+      <!--                     end of table row-->
+
+    </div>
+    <!--        loop end-->
+
+    </tbody>
+  </table>
+
+  <div>
+    <a href="/productsPage" >go back to all products</a>
+  </div>
+</div>
+
+</div>
+</div>
+
+</div>
+</div>
+
+
+</body>
+</html>
