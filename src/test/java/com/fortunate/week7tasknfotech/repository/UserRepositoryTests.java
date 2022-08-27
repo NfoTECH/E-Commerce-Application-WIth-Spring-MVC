@@ -29,7 +29,7 @@ public class UserRepositoryTests {
         user.setPassword("perp");
         user.setFirstName("Fortunate");
         user.setLastName("Nwachukwu");
-        user.setRole(Role.valueOf("Customer"));
+        user.setRole("Customer");
 
         User savedUser = repo.save(user);
         User existUser = entityManager.find(User.class, savedUser.getId());
@@ -40,7 +40,7 @@ public class UserRepositoryTests {
     @Test
     public void testFindUserByEmail() {
         String email = "fortunenwachukwu@gmail.com";
-        User user = repo.findByEmail(email);
+        User user = repo.findUserByEmail(email);
         assertThat(user).isNotNull();
     }
 }

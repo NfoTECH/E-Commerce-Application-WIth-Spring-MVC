@@ -5,9 +5,8 @@
 <head>
     <meta charset="ISO-8859-1">
     <title>NfoTECH Electronics</title>
-    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
-    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
-    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 </head>
 <body>
 
@@ -15,30 +14,10 @@
     <section class="my-5">
         <div class="container">
             <div class="card-header my-3">All Products</div>
-<!--            <div class="row">-->
-<!--                <div class="col-md-12">-->
-<!--                    <h1>Welcome to NfoTECH Stores</h1>-->
-<!--                    <h3><a th:href="@{/users}">List of Users</a></h3>-->
-<!--                    <h3><a th:href="@{/register}">Register</a></h3>-->
-<!--                    <h3><a th:href="@{/allProduct}">List of Products</a></h3>-->
-<!--                    <h3><a th:href="@{/login}">Login</a></h3>-->
-<!--                    <p>Lorem ipsum dolor sit amet, consectetur [....]</p>-->
-<!--                </div>-->
-<!--            </div>-->
-            <div class="row" >
-<!--                <div class="col-3 m-1" th:each="product : ${displayProducts}">-->
-<!--                    <div class="card" style="width: 18rem;">-->
-<!--                        <img src="../static/images/" th:src="@{${product.getImage()}}" class="card-img-top h-50" alt="..." />-->
-<!--                        <div class="card-body">-->
-<!--                            <h5 class="card-title" th:text="${product.name}"></h5>-->
-<!--                            <h2 class="card-title" th:text="${product.price}"></h2>-->
-<!--                            <a href="#" class="btn btn-primary">Add to cart</a>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
+            <div class="row">
                 <div class="col-md-3 my-3" th:each="product : ${displayProducts}">
-                    <div class="card w-100" style="width: 18rem;">
-                        <img src="../static/images/" th:src="@{${'images/'+ product.image}}" class="card-img-top h-50" alt="Card images cap" />
+                    <div class="card w-100" style="width: 18rem">
+                        <img src="../static/images/" th:src="@{${'images/'+ product.image}}" class="card-img-top h-100" alt="Card images cap" />
                         <div class="card-body">
 
                             <h6 class="card-title" th:text="${product.name}"></h6>
@@ -60,14 +39,6 @@
 
     </section>
 </div>
-<!--<div th:replace="fragments/navbar :: navbar"></div>-->
-<!--<div class="container text-center" layout:fragment="content">-->
-<!--    <h1>Welcome to NfoTECH Stores</h1>-->
 <!--    <h3><a th:href="@{/users}">List of Users</a></h3>-->
-<!--    <h3><a th:href="@{/register}">Register</a></h3>-->
-<!--    <h3><a th:href="@{/allProduct}">List of Products</a></h3>-->
-<!--    <h3><a th:href="@{/login}">Login</a></h3>-->
-<!--</div>-->
-
 </body>
 </html>
