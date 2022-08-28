@@ -1,11 +1,13 @@
 package com.fortunate.week7tasknfotech.model;
 
-import com.fortunate.week7tasknfotech.enums.Role;
+import com.fortunate.week7tasknfotech.model.enums.Role;
 import lombok.*;
 
 import javax.persistence.*;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "users")
 public class User {

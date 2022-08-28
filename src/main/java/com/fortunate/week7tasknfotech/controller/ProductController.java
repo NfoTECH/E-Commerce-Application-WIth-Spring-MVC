@@ -32,14 +32,6 @@ public class ProductController {
         model.addAttribute("product", product);
         return "newProduct";
     }
-
-    //@RequestMapping(value = "/save", method = RequestMethod.POST)
-//    @PostMapping("/save")
-//    public String saveProduct(@ModelAttribute("product") Product product) {
-//        service.saveProduct(product);
-//        return "redirect:/allProduct";
-//    }
-
     @PostMapping("/save")
     public String saveProduct(@ModelAttribute("product")Product newProduct,
                               @RequestParam("productImage") MultipartFile multipartFile,

@@ -26,7 +26,7 @@ public class UserController {
         this.productService = productService;
     }
 
-    @GetMapping("")
+    @GetMapping("/")
     public String viewHomePage(Model model) {
         List<Product> displayProducts = productService.listAllProduct();
         model.addAttribute("displayProducts", displayProducts);
@@ -46,36 +46,36 @@ public class UserController {
 
     }
 
-    @GetMapping("/auth")
+    @GetMapping("/login")
     public String viewLoginPage(Model model) {
         model.addAttribute("user", new User());
         return "login";
     }
 
-    @PostMapping("/login")
+    @PostMapping("/logUser")
     public String login(HttpSession session, @ModelAttribute("user") User user,
                         RedirectAttributes redirectAttributes) {
-        User loggingUser;
-        loggingUser = userService.getUserByEmail(user.getEmail());
-        if(loggingUser == null) {
-            redirectAttributes.addFlashAttribute("Invalid", "User does not exist, check login details or register");
 
-            return "login";
+        String message = userService.userSignIn(user.getEmail(), user.getPassword());
+        if(message.equals("customer")){
+            System.out.println("Customer logged in");
+            session.setAttribute("email" , user.getEmail());
+            return "redirect:/";
+        } else if (message.equals("admin")) {
+            System.out.println("Admin logged in");
+            session.setAttribute("email" , user.getEmail());
+            return "redirect:/admin/dashboard";
+        }else{
+            redirectAttributes.addFlashAttribute("message", message);
+            return "redirect:login";
         }
-        loggingUser = userService.getUserByEmailAndPassword(user.getEmail(), user.getPassword());
-        if(loggingUser == null) {
-            redirectAttributes.addFlashAttribute("Invalid", "Incorrect Password");
-            return "login";
-        }
-        session.setAttribute("loggedUser", loggingUser);
-        return "redirect:/productsPage";
     }
 
     @GetMapping("/users")
     public String listUsers(Model model) {
         List<User> listUsers = userService.getAllUsers();
         model.addAttribute("listUsers", listUsers);
-        return "users";
+        return "admin/users";
     }
 
     @GetMapping("/logout")

@@ -15,11 +15,11 @@
   <div>
     <img class="img-fluid" th:src="@{/images/nfotech_electronics.png}" />
   </div>
-  <form th:action="@{/login}" method="post" style="max-width: 350px; margin: 0 auto;">
+  <form th:action="@{/logUser}" method="post" style="max-width: 350px; margin: 0 auto;" th:object="${user}">
 
-<!--    <div th:if="${param.error}">-->
-<!--      <p class="text-danger">[[${session.SPRING_SECURITY_LAST_EXCEPTION.message}]]</p>-->
-<!--    </div>-->
+    <div th:if="${param.error}">
+      <p class="text-danger">[[${session.SPRING_SECURITY_LAST_EXCEPTION.message}]]</p>
+    </div>
 
     <div th:if="${Invalid}" class="alert alert-warning text-center">
       <p class="text-danger">[[${Invalid}]]</p>
@@ -32,12 +32,12 @@
       <p>Login to access your cart</p>
       <p>
         <label>
-          <input type="email" name="email" class="form-control" placeholder="E-mail" required autofocus/>
+          <input type="email" name="email" class="form-control" placeholder="E-mail" required autofocus th:field="*{email}"/>
         </label>
       </p>
       <p>
         <label>
-          <input type="password" name="password" class="form-control" placeholder="Password" required />
+          <input type="password" name="password" class="form-control" placeholder="Password" required th:field="*{password}" />
         </label>
       </p>
       <p>
