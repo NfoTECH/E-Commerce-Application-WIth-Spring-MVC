@@ -17,8 +17,8 @@ import java.util.List;
 
 @Controller
 public class UserController {
-    private UserService userService;
-    private ProductService productService;
+    private final UserService userService;
+    private final ProductService productService;
 
     @Autowired
     public UserController(UserService userService, ProductService productService) {
@@ -69,13 +69,6 @@ public class UserController {
             redirectAttributes.addFlashAttribute("message", message);
             return "redirect:login";
         }
-    }
-
-    @GetMapping("/users")
-    public String listUsers(Model model) {
-        List<User> listUsers = userService.getAllUsers();
-        model.addAttribute("listUsers", listUsers);
-        return "admin/users";
     }
 
     @GetMapping("/logout")

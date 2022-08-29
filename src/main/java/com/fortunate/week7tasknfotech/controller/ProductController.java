@@ -14,10 +14,15 @@ import java.io.IOException;
 import java.util.List;
 
 @Controller
+@RequestMapping(value = "admin" )
 public class ProductController {
 
+
+    private final ProductService service;
     @Autowired
-    private ProductService service;
+    public ProductController(ProductService service) {
+        this.service = service;
+    }
 
     @GetMapping("/allProduct")
     public String productPage(Model model) {
@@ -32,13 +37,20 @@ public class ProductController {
         model.addAttribute("product", product);
         return "newProduct";
     }
-    @PostMapping("/save")
-    public String saveProduct(@ModelAttribute("product")Product newProduct,
-                              @RequestParam("productImage") MultipartFile multipartFile,
-                              RedirectAttributes attributes) throws IOException {
-        service.saveProductWithImage(multipartFile, newProduct);
-        return "redirect:/allProduct";
-    }
+    //@PostMapping("/save")
+//    @PostMapping("/addProduct")
+//    public String saveProduct(@ModelAttribute("product")Product newProduct,
+//                              @RequestParam("productImage") MultipartFile multipartFile) throws IOException {
+//        service.saveProductWithImage(multipartFile, newProduct);
+//        //return "redirect:/allProduct";
+//        return "redirect:/admin/dashboard";
+//    }
+
+    //    @PostMapping(value = "/addProduct")
+//    public String addProduct(@ModelAttribute Product product){
+//        service.saveProduct(product);
+//        return "redirect:/admin/dashboard";
+//    }
 
     @GetMapping("/edit/{id}")
     public ModelAndView showNewProductForm(@PathVariable(name = "id") Long id) {

@@ -9,8 +9,8 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -31,7 +31,7 @@ public class ProductService {
         String uploadDir = "src/main/resources/static/images";
         FileUploadUtil.saveFile(uploadDir, imageFileName, multipartFile);
         product.setImage(imageFileName);
-        repository.save(product);
+        this.repository.save(product);
     }
 
     public Product get(Long id) {

@@ -8,8 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.util.List;
 
 @Controller
@@ -18,7 +20,7 @@ public class AdminController {
 
     private final UserService userService;
 
-    private ProductService service;
+    private final ProductService service;
 
     @Autowired
     public AdminController(UserService userService, ProductService service) {
@@ -46,6 +48,12 @@ public class AdminController {
     }
 
 
+    @GetMapping("/users")
+    public String listUsers(Model model) {
+        List<User> listUsers = userService.getAllUsers();
+        model.addAttribute("listUsers", listUsers);
+        return "Admin/users";
+    }
 
     @GetMapping( value="/dashboard")
     public String dashboard(Model model , HttpSession session){
@@ -59,7 +67,8 @@ public class AdminController {
         model.addAttribute("productField" , new Product());
 
         if(session.getAttribute("email") == null){
-            return "redirect:/admin/loginAdmin";
+            //return "redirect:/admin/loginAdmin";
+            return "redirect:/login";
         }else {
             return "Admin/dashboard";
         }
@@ -91,11 +100,21 @@ public class AdminController {
 
 
 
+//    @PostMapping(value = "/addProduct")
+//    public String addProduct(@ModelAttribute Product product){
+//        service.saveProduct(product);
+//        return "redirect:/admin/dashboard";
+//    }
+
+//    @PostMapping("/save")
     @PostMapping(value = "/addProduct")
-    public String addProduct(@ModelAttribute Product product){
-        service.saveProduct(product);
+    public String saveProduct(@ModelAttribute("product")Product newProduct,
+                              @RequestParam("productImage") MultipartFile multipartFile) throws IOException {
+        service.saveProductWithImage(multipartFile, newProduct);
+        //return "redirect:/allProduct";
         return "redirect:/admin/dashboard";
     }
+
 
     @PostMapping(value = "/deleteProduct/{productId}")
     public String deleteProduct(@PathVariable(name="productId") String productId){
@@ -103,9 +122,4 @@ public class AdminController {
         service.deleteProductById(id);
         return "redirect:/admin/dashboard";
     }
-
-
-
-
-
 }

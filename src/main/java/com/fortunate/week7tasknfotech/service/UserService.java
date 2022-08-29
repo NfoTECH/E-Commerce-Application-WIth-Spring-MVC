@@ -1,7 +1,6 @@
 package com.fortunate.week7tasknfotech.service;
 
 import com.fortunate.week7tasknfotech.Exception.UserNotFoundException;
-import com.fortunate.week7tasknfotech.model.enums.Role;
 import com.fortunate.week7tasknfotech.model.User;
 import com.fortunate.week7tasknfotech.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -15,25 +15,28 @@
                         <div class="card-body">
                             <h4 class="text-center">Edit Product</h4>
                             <form th:action="@{/admin/editProduct}"  th:object="${productField}"  method="POST">
-                                <input class="form-control mb-2" th:value="${product.id}" th:name="product_Id"  placeholder="product Name" type="hidden">
-                                <label for="firstname">Product Name</label>
-                                <input class="form-control mb-2" th:value="${product.name}" th:name="ProductName" id="firstname"  placeholder="Product  Name" type="text">
-                                <label for="email">Description</label>
-                                <input  class="form-control mb-2" id="email" th:value="${product.productDesc}" th:name="productDesc" placeholder="Product Description" type="text">
-                                <label class="mt-3" for="password">price</label>
-                                <input  class="form-control mb-2" id="password" th:value="${product.price}" th:name="price" placeholder="Enter Password" type="number">
+                                <input class="form-control mb-2" th:value="${product.id}" th:name="id"  placeholder="product Name" type="hidden">
+                                <label for="name">Product Name</label>
+                                <input class="form-control mb-2" th:value="${product.name}" th:name="name" id="name"  placeholder="Product  Name" type="text">
+<!--                                <label for="email">Description</label>-->
+<!--                                <input  class="form-control mb-2" id="email" th:value="${product.productDesc}" th:name="productDesc" placeholder="Product Description" type="text">-->
+                                <label class="mt-3" for="price">Product Price</label>
+                                <input  class="form-control mb-2" id="price" th:value="${product.price}" th:name="price" placeholder="Enter Price" type="number">
                                 <label for="category">Product Category</label>
-                                <select class="form-select mb-2" id="category"  th:name="productCategory" aria-label="Default select example">
+                                <select class="form-select mb-2" id="category"  th:name="category" aria-label="Default select example">
                                     <option value="general" selected>Select A category</option>
-                                    <option selected th:value="${product.category}" th:text="${product.productCategory}"></option>
-                                    <option value="shoe">Male Shoe</option>
-                                    <option value="shoe">Female shoe</option>
+                                    <option selected th:value="${product.category}" th:text="${product.category}"></option>
+                                    <option value="TV">TV</option>
+                                    <option value="Phone">Phone</option>
+                                    <option value="Laptop">Laptop</option>
+                                    <option value="HomeTheatre">HomeTheatre</option>
+                                    <option value="Refrigerator">Refrigerator</option>
                                 </select>
                                 <label  for="file">Product Image</label>
                                 <input type="text" id="file" class="form-control form-control-lg mb-2" th:value="${product.image}" th:name="image"   placeholder="Insert Image Url" name="file" required>
                                 <label for="file">Product Quantity</label>
-                                <input type="text" id="quantity" class="form-control form-control-lg mb-2" th:value="${product.quantity }" th:name="productQuantity"   placeholder="Insert Image Url" name="file" required>
-                                <button  style="background: #060863; color: #ffffff" type="submit" class="btn btn-primary login_button w-100 mb-2" name="login">Edit Product</button>
+                                <input type="text" id="quantity" class="form-control form-control-lg mb-2" th:value="${product.quantity }" th:name="quantity"   placeholder="Insert Image Url" name="file" required>
+                                <button  style="background: #060863; color: #ffffff" type="submit" class="btn btn-primary login_button w-100 mb-2" name="login">Update</button>
                                 <button type="button" class="btn btn-secondary w-100" data-bs-dismiss="modal">Close</button>
                             </form>
                         </div>
