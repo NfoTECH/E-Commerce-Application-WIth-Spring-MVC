@@ -78,10 +78,4 @@ public class UserController {
         return "redirect:/";
     }
 
-    @GetMapping("/contact")
-    public String contactPage() {
-        return "contact";
-    }
-
-
 }

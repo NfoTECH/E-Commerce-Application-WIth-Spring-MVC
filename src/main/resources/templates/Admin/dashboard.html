@@ -151,7 +151,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 </div>
 
@@ -181,11 +180,10 @@
             <div class="modal-body">
                 <div class="card login_card border-0 ">
                     <div class="card-body">
-                        <form action="/admin/addProduct"  th:object="${product}"  method="POST" enctype="multipart/form-data">
+<!--                        <form action="/admin/addProduct"  th:object="${product}"  method="POST" enctype="multipart/form-data">-->
+                        <form action="/admin/addProduct"  th:object="${product}"  method="POST">
                             <label for="firstname">Product Name</label>
                             <input class="form-control mb-2" th:field="${product.name}" id="firstname"  placeholder="Product Name" type="text">
-<!--                            <label for="email">Description</label>-->
-<!--                            <input  class="form-control mb-2" id="email" th:field="${product.productDesc}" placeholder="Product Description" type="text">-->
                             <label for="category">Product Category</label>
                             <select class="form-select mb-2" id="category" th:field="${product.category}" aria-label="Default select example">
                                 <option value="general" selected>Select A category</option>
@@ -201,10 +199,8 @@
                             <input type="text" id="quantity" class="form-control form-control-lg mb-2"  th:field="${product.quantity}"   placeholder="Enter quantity" name="file" required>
 
                             <label for="productImage">Product Image</label>
-                            <input id="productImage" name="productImage" class="input-file" type="file" accept="image/*"><br>
-<!--                            <input type="text" id="file" class="form-control form-control-lg mb-2"  th:field="${product.image}"  placeholder="Insert Image Url" name="file">-->
-<!--                            <label for="quantity">Product Quantity</label>-->
-<!--                            <input type="text" id="quantity" class="form-control form-control-lg mb-2"  th:field="${product.quantity}"   placeholder="Enter quantity" name="file" required>-->
+                            <input class="form-control mb-2" th:field="${product.image}" id="productImage"  placeholder="Image url" type="text">
+<!--                            <input id="productImage" name="productImage" class="input-file" type="file" accept="image/*"><br>-->
                             <button  style="background: #060863; color: #ffffff" type="submit" class="btn btn-primary login_button w-100 mb-2" name="login">Add Product</button>
                             <button type="button" class="btn btn-secondary w-100" data-bs-dismiss="modal">Close</button>
                         </form>
